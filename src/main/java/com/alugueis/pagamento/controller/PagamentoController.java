@@ -23,4 +23,9 @@ public class PagamentoController {
     public List<PagamentoDTO> listar() {
         return pagamentoService.listarPagamentos();
     }
+
+    @GetMapping("/{id}")
+    public PagamentoDTO buscarPorId(@PathVariable Long id) {
+        return pagamentoService.buscarPorId(id);
+    }
 }

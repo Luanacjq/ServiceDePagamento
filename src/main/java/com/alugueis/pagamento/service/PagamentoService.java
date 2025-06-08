@@ -16,30 +16,32 @@ public class PagamentoService {
     private PagamentoRepository pagamentoRepository;
 
     public PagamentoDTO criarPagamento(PagamentoDTO dto) {
-    Pagamento pagamento = new Pagamento();
-    pagamento.setValor(dto.getValor());
-    pagamento.setMetodo(dto.getMetodo());
-    pagamento.setDataPagamento(LocalDateTime.now());
+        Pagamento pagamento = new Pagamento();
+        pagamento.setValor(dto.getValor());
+        pagamento.setMetodo(dto.getMetodo());
+        pagamento.setDataPagamento(LocalDateTime.now());
 
-    pagamento = pagamentoRepository.save(pagamento);
+        pagamento.setNome(dto.getNome());
+        pagamento.setNumero(dto.getNumero());
+        pagamento.setValidade(dto.getValidade());
+        pagamento.setCvv(dto.getCvv());
+        pagamento.setCpf(dto.getCpf());
+        pagamento.setEmail(dto.getEmail());
 
-    PagamentoDTO resposta = new PagamentoDTO();
-    resposta.setId(pagamento.getId());
-    resposta.setValor(pagamento.getValor());
-    resposta.setMetodo(pagamento.getMetodo());
-    resposta.setDataPagamento(pagamento.getDataPagamento());
+        pagamento = pagamentoRepository.save(pagamento);
 
-    return resposta;
+        return PagamentoDTO.fromEntity(pagamento);
     }
 
     public List<PagamentoDTO> listarPagamentos() {
-        return pagamentoRepository.findAll().stream().map(pagamento -> {
-            PagamentoDTO dto = new PagamentoDTO();
-            dto.setId(pagamento.getId());
-            dto.setValor(pagamento.getValor());
-            dto.setMetodo(pagamento.getMetodo());
-            dto.setDataPagamento(pagamento.getDataPagamento());
-            return dto;
-        }).collect(Collectors.toList());
+        return pagamentoRepository.findAll().stream()
+            .map(PagamentoDTO::fromEntity)
+            .collect(Collectors.toList());
+    }
+
+    public PagamentoDTO buscarPorId(Long id) {
+        Pagamento pagamento = pagamentoRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Pagamento não encontrado"));
+        return PagamentoDTO.fromEntity(pagamento);
     }
 }

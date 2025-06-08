@@ -21,6 +21,45 @@ public class Pagamento {
     @Column(name = "dt_data")
     private LocalDateTime dataPagamento;
 
+    // NOVOS CAMPOS
+    @Column(name = "te_nome")
+    private String nome;
+
+    @Column(name = "te_numero")
+    private String numero;
+
+    @Column(name = "te_validade")
+    private String validade;
+
+    @Column(name = "te_cvv")
+    private String cvv;
+
+    @Column(name = "te_cpf")
+    private String cpf;
+
+    @Column(name = "te_email")
+    private String email;
+
+    // getters e setters para esses campos novos
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getNumero() { return numero; }
+    public void setNumero(String numero) { this.numero = numero; }
+
+    public String getValidade() { return validade; }
+    public void setValidade(String validade) { this.validade = validade; }
+
+    public String getCvv() { return cvv; }
+    public void setCvv(String cvv) { this.cvv = cvv; }
+
+    public String getCpf() { return cpf; }
+    public void setCpf(String cpf) { this.cpf = cpf; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
