@@ -5,6 +5,7 @@ import com.alugueis.pagamento.repository.PagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,15 +16,20 @@ public class PagamentoService {
     private PagamentoRepository pagamentoRepository;
 
     public PagamentoDTO criarPagamento(PagamentoDTO dto) {
-        Pagamento pagamento = new Pagamento();
-        pagamento.setValor(dto.getValor());
-        pagamento.setMetodo(dto.getMetodo());
-        pagamento.setDataPagamento(dto.getDataPagamento());
+    Pagamento pagamento = new Pagamento();
+    pagamento.setValor(dto.getValor());
+    pagamento.setMetodo(dto.getMetodo());
+    pagamento.setDataPagamento(LocalDateTime.now());
 
-        pagamento = pagamentoRepository.save(pagamento);
+    pagamento = pagamentoRepository.save(pagamento);
 
-        dto.setId(pagamento.getId());
-        return dto;
+    PagamentoDTO resposta = new PagamentoDTO();
+    resposta.setId(pagamento.getId());
+    resposta.setValor(pagamento.getValor());
+    resposta.setMetodo(pagamento.getMetodo());
+    resposta.setDataPagamento(pagamento.getDataPagamento());
+
+    return resposta;
     }
 
     public List<PagamentoDTO> listarPagamentos() {
