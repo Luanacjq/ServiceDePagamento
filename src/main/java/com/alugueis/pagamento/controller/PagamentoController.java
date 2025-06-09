@@ -19,6 +19,11 @@ public class PagamentoController {
         return pagamentoService.criarPagamento(dto);
     }
 
+    @GetMapping("/")
+    public String home() {
+        return "Serviço de Pagamento rodando!";
+    }
+
     @GetMapping("/listar")
     public List<PagamentoDTO> listar() {
         return pagamentoService.listarPagamentos();
