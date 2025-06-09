@@ -8,7 +8,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>org</groupId>
@@ -21,7 +21,7 @@
         <java.version>17</java.version>
     </properties>
 
-    <!-- ✅ Adicionado: suporte ao Spring Cloud -->
+    <!-- ✅ Suporte ao Spring Cloud -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -93,7 +93,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>org.microservice_aluguel.App</mainClass>
+                    <mainClass>com.alugueis.pagamento.PagamentoApplications</mainClass>
                 </configuration>
             </plugin>
         </plugins>
